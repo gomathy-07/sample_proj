@@ -1,0 +1,74 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <form (ngSubmit)="onSubmit(form)" name="form" #form="ngForm">
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" #emailClear name="email" #emailValid="ngModel" ngModel class="form-control" id="email" [value]="searchValue"
+                    required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Your Mail Here">
+            </div>
+            <div *ngIf="emailValid.touched && emailValid.invalid" class="alert alert-danger">
+                <div class="width" *ngIf="emailValid.errors?.required">
+                    Required
+                </div>
+                <div class="width" [hidden]="!emailValid.hasError('pattern')">
+                    Not a Valid email
+                </div>
+            </div>
+  
+            <div class="form-group">
+              <label><b>Select Subscription Type:</b></label>
+              <select ngModel name="sub" #choiceValid="ngModel" class="form-control" required [ngModel]="defaultQuestion">
+                  <option value="Basic">Basic</option>
+                  <option value="Advanced" selected>Advanced</option>
+                  <option value="Pro">Pro</option>
+              </select>
+          </div>
+  
+            <div class="form-group">
+                <label for="password"><b>Password:</b></label>
+                <input type="password" ngModel class="form-control" #passwordValid="ngModel" name="password" id="password" [value]="searchValue1"
+                    required pattern="^(?=.*[A-Za-z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8}$" placeholder="Enter your Password Here" maxlength="8">
+            </div>
+            <div *ngIf="passwordValid.touched && passwordValid.invalid" class="alert alert-danger">
+                <div class="width" *ngIf="passwordValid.errors?.required">
+                    Password is Required
+                </div>
+                <div class="width" *ngIf="passwordValid.errors?.pattern">
+                    Password must be 8 character long with 1 letter and 1 special character
+                </div>
+            </div>
+         
+              <button type="submit" class="btn btn-secondary" [disabled]="!form.valid">Submit</button>
+              <button type="reset" class="btn btn-secondary"(click)="clean()">Clear</button>
+            </form>
+          </div>
+    </div>
+   </div>
+
+   
+   <!-- <ng-template #forminfo>
+      <div class="container">
+      <ul class="list-group">
+      <li class="list-group-item" [ngStyle]="{'font-size': a }">
+      Email: {{ email }}
+      </li>
+      <li class="list-group-item" [ngStyle]="{'font-size': a }">
+      Subscription Type: {{ sub | uppercase }}
+      </li>
+      <li class="list-group-item" [ngStyle]="{'font-size': a }">
+      Password: {{ password }}
+      </li>
+      </ul>
+      </div>
+      </ng-template> -->
+  
+   
+  
+  
+  
+  
+  
